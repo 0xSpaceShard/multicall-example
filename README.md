@@ -13,3 +13,17 @@ npm i
 
 node src/multicall.js
 ```
+
+## Run PY example
+
+Make sure to modify all constants according to your needs.
+
+```
+cd py 
+
+virtualenv --pytrhon python3.9
+
+pip install -r requirements.txt
+
+python src/multicall.py
+```
