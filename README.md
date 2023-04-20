@@ -1,15 +1,16 @@
 # multicall-example
 An example on how to create multicall transactions on Starknet
 
+## Setup
+Install npm packages
+```sh
+npm install
+```
 
 ## Run JS example
 
-Make sure to create a new `.env` file with your configuration for the `RELAYER_ADDRESS` and `L1_RECIPIENT`.
+Make sure to create a new `.env` file with your configuration.
 
-```
-cd js/
-
-npm i
-
-node src/multicall.js
+```sh
+node src/multicall.js receiver=0x00000000000000000000000000000000000000000001 amount=50
 ```
