@@ -8,12 +8,15 @@ npm install
 ```
 
 ## Network
--  [goerli-1](https://testnet.starkscan.co/)
+- Example works on [Starknet goerli-1](https://testnet.starkscan.co/)
 
 ## Create Multicall transaction
 
-1. Make sure to create a new `.env` file with your configuration.
-2. Run
+1. Make sure to create a new `.env` file with your configuration:
+    - your OpenZeppelin based account private key and address from Starknet Goerli
+    - make sure your account has funds! :)
+    - address on Ethereum Goerli you wish to send tokens
+3. Run
 ```sh
 node src/multicall.js receiver=0x00000000000000000000000000000000000000000001 amount=50
 ```
