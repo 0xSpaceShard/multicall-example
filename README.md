@@ -7,6 +7,9 @@ Install npm packages
 npm install
 ```
 
+## Network
+-  [goerli-1](https://testnet.starkscan.co/)
+
 ## Create Multicall transaction
 
 1. Make sure to create a new `.env` file with your configuration.
