@@ -11,7 +11,7 @@ npm install
 - Example works on [Starknet goerli-1](https://testnet.starkscan.co/)
 
 ## Get Gas Fee
-1. To get the fees you have to pay to get your transaction processed on L1 run the command
+1. To get the fees you have to pay to get your transaction processed on L1 run the command (IMPORTANT the timestamp should be in UTC time)
 ```sh
 node src/getFees.js
 ```
