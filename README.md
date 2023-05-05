@@ -8,6 +8,7 @@ npm install
 ```
 
 ## Network
+- Example works on [Starknet mainnet](https://starkscan.co/)
 - Example works on [Starknet goerli-1](https://testnet.starkscan.co/)
 
 ## Get Gas Fee
@@ -29,9 +30,9 @@ GasCost: 3900000000000000
     - address on Ethereum Goerli you wish to send tokens
 3. Run
 ```sh
-node src/multicall.js receiver=0x00000000000000000000000000000000000000000001 amount=50 fees=3900000000000000
+node src/multicall.js network=mainnet receiver=0x00000000000000000000000000000000000000000001 amount=50 fees=3900000000000000 
 ```
-3. Copy the transaction hash and paste it on https://testnet.starkscan.co/
-4. Wait for the transaction to be accepted on L1 (currently 4h).
+3. Copy the transaction hash and paste it on [Starknet mainnet](https://starkscan.co/) or [Starknet goerli-1](https://testnet.starkscan.co/)
+4. Wait for the transaction to be accepted on L1.
 5. The relayer will detect your transaction and call withdraw for you.
 6. Done :) !
