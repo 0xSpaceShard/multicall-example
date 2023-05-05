@@ -6,9 +6,9 @@ import {
 } from "./helpers.js";
 
 const main = async () => {
-  const { receiverL1Address, amountToBridge, fees } = getSingleInputs();
+  const { receiverL1Address, amountToBridge, fees, network } = getSingleInputs();
   const { ethTokenContract, bridgeContract } = getContracts();
-  const { provider, account } = getWalletAndProvider();
+  const { provider, account } = getWalletAndProvider(network);
 
   ethTokenContract.connect(account);
   bridgeContract.connect(account);

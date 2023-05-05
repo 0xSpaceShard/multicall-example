@@ -45,6 +45,7 @@ export const getSingleInputs = () => {
   let receiverL1Address;
   let amountToBridge;
   let fees;
+  let network;
 
   for (let i = 2; i < process.argv.length; i++) {
     const arg = process.argv[i].split("=");
@@ -62,6 +63,9 @@ export const getSingleInputs = () => {
         break;
       case "fees":
         fees = String(Number(value));
+        break;
+      case "network":
+        network = String(value);
         break;
       default:
         throw new Error(`${key} argument is not valid`);
@@ -85,11 +89,17 @@ export const getSingleInputs = () => {
     );
   }
 
-  return { receiverL1Address, amountToBridge, fees };
+  if (!network) {
+    throw new Error("Network not set.");
+  }
+
+  return { receiverL1Address, amountToBridge, fees, network };
 };
 
-export const getWalletAndProvider = () => {
-  const provider = new Provider({ sequencer: { network: "goerli-alpha" } });
+export const getWalletAndProvider = (network) => {
+  network = network == "mainnet" ? "mainnet-alpha" : "goerli-alpha";
+  console.log({network})
+  const provider = new Provider({ sequencer: { network } });
   const starkKeyPair = ec.getKeyPair(UserPrivateKey);
   const account = new Account(provider, UserAccountAddress, starkKeyPair);
   return { provider, account };
