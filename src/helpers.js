@@ -16,6 +16,7 @@ const UserAccountAddress = process.env.OZ_ACCOUNT_ADDRESS;
 const RelayerAccount = process.env.RELAYER_ACCOUNT;
 const EthTokenAddress = process.env.ETH_TOKEN_ADDRESS;
 const BridgeAddress = process.env.BRIDGE_ADDRESS;
+const ERC20Address = process.env.ERC20_ADDRESS;
 
 export const getContracts = (provider) => {
   const ethTokenCompiled = json.parse(
@@ -114,8 +115,8 @@ export const multicall = async (
 ) => {
   const amountUint256 = uint256.bnToUint256(amountToBridge.toString());
   const feesUint256 = uint256.bnToUint256(fees.toString());
-
-  const multicall = await account.execute([
+    
+  const txs = [
     {
       contractAddress: EthTokenAddress,
       entrypoint: "transfer",
@@ -140,7 +141,25 @@ export const multicall = async (
         },
       }),
     },
-  ]);
+  ]
+
+  if (BridgeAddress != EthTokenAddress) {
+    txs.unshift(
+      {
+        contractAddress: ERC20Address,
+        entrypoint: "approve",
+        calldata: stark.compileCalldata({
+          spender: BridgeAddress,
+          amount: {
+            type: "struct",
+            low: amountUint256.low,
+            high: amountUint256.high,
+          },
+        }),
+      },
+    )
+  }
+  const multicall = await account.execute(txs);
 
   console.log("Transaction hash:", multicall.transaction_hash);
   await provider.waitForTransaction(multicall.transaction_hash);
