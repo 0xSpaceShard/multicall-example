@@ -143,7 +143,7 @@ export const multicall = async (
     },
   ]
 
-  if (BridgeAddress != EthTokenAddress) {
+  if (BridgeAddress != "0x073314940630fd6dcda0d772d4c972c4e0a9946bef9dabf4ef84eda8ef542b82") {
     txs.unshift(
       {
         contractAddress: ERC20Address,
