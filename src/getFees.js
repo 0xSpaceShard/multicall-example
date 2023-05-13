@@ -30,7 +30,7 @@ const main = async () => {
   const timestamp = Math.floor(new Date().getTime() / 1000);
   console.log("Current timestamp:", timestamp);
   console.log("Network:", network);
-  console.log("Url:", url + timestamp);
+  console.log("Url:", url + process.env.BRIDGE_ADDRESS + "/" + timestamp);
 
   try {
     const res = await fetch(url + process.env.BRIDGE_ADDRESS + "/" + timestamp);
