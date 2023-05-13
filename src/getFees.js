@@ -1,4 +1,7 @@
 import fetch from "node-fetch";
+import * as dotenv from "dotenv";
+
+dotenv.config()
 
 const RelayerMainnet = "https://starkgate.spaceshard.io/v1/gas-cost/";
 const RelayerDevelop = "https://starkgate-testnet.spaceshard.io/v1/gas-cost/";
@@ -29,11 +32,15 @@ const main = async () => {
   console.log("Network:", network);
   console.log("Url:", url + timestamp);
 
-  const res = await fetch(url + timestamp);
-
-  if (res.status == 200) {
-    console.log("GasCost:", (await res.json()).result.gasCost);
+  try {
+    const res = await fetch(url + process.env.BRIDGE_ADDRESS + "/" + timestamp);
+    if (res.status == 200) {
+      console.log("GasCost:", (await res.json()).result.gasCost);
+    }
+  } catch (error) {
+    throw new Error(error)
   }
+
 };
 
 main()
